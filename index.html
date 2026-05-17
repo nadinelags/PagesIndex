@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL HEALTH UPDATE</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(45deg, #ff007f, #7f00ff, #00ffff, #ff007f);
+            background-size: 400% 400%;
+            animation: discoBg 8s ease infinite;
+            font-family: 'Comic Sans MS', 'Chalkboard SE', cursive, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        @keyframes discoBg {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 3rem;
+            border-radius: 50px;
+            border: 8px dashed #ff00ff;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+            max-width: 90%;
+        }
+
+        /* Sparkly Text Effect */
+        .sparkle-text {
+            font-size: 4rem;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 
+                0 0 10px #fff, 
+                0 0 20px #ff00df, 
+                0 0 30px #ff00df, 
+                0 0 40px #ff00df, 
+                0 0 70px #ff00df;
+            animation: pulse 1s ease-in-out infinite alternate;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        @keyframes pulse {
+            from { transform: scale(1); text-shadow: 0 0 10px #fff, 0 0 20px #ff00df, 0 0 40px #ff00df; }
+            to { transform: scale(1.05); text-shadow: 0 0 20px #fff, 0 0 30px #00ffff, 0 0 60px #00ffff; }
+        }
+
+        /* Silly Subtitle */
+        .subtitle {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        /* The Elusive Button */
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            background-color: #00ff00;
+            color: black;
+            border: 4px solid black;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        /* Sparkle particles */
+        .sparkle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: gold;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            pointer-events: none;
+            animation: fly 1.5s linear infinite;
+        }
+
+        @keyframes fly {
+            0% { transform: translateY(0) scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100px) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* Floating emojis */
+        .floating-knee {
+            position: absolute;
+            font-size: 3rem;
+            animation: float 4s linear infinite;
+            z-index: 1;
+            user-select: none;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(105vh) rotate(0deg); }
+            100% { transform: translateY(-10vh) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating background nonsense -->
+    <script>
+        // Create random floating knee/medical emojis
+        const emojis = ['🦵', '🩼', '💥', '👴', '🩹'];
+        for (let i = 0; i < 15; i++) {
+            let div = document.createElement('div');
+            div.className = 'floating-knee';
+            div.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            div.style.left = Math.random() * 100 + 'vw';
+            div.style.animationDelay = Math.random() * 5 + 's';
+            div.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(div);
+        }
+    </script>
+
+    <div class="container">
+        <!-- The Main Event -->
+        <h1 class="sparkle-text">How's your knee,<br>asshole? ✨</h1>
+        
+        <p class="subtitle">An official medical inquiry regarding your structural integrity.</p>
+        
+        <!-- Interactive Joke Button -->
+        <button class="btn" id="kneeBtn" onclick="buttonClicked()">It clicks, pops, and hurts</button>
+    </div>
+
+    <script>
+        // Automatic sparkle generator around the text
+        setInterval(() => {
+            const container = document.querySelector('.container');
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            // Randomize position within the container
+            sparkle.style.left = Math.random() * container.offsetWidth + 'px';
+            sparkle.style.top = Math.random() * (container.offsetHeight / 2) + 'px';
+            
+            // Random color
+            const colors = ['gold', '#ff00ff', '#00ffff', '#fff', '#ffea00'];
+            sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+            
+            container.appendChild(sparkle);
+            
+            setTimeout(() => { sparkle.remove(); }, 1500);
+        }, 150);
+
+        // Funny responses when they click the button
+        const phrases = [
+            "Ouch, why'd you click me?",
+            "Did it make a crunchy sound?",
+            "Time to look into walking canes! 🦯",
+            "Apply ice immediately! 🧊",
+            "Have you considered bionic upgrades? 🤖",
+            "Is it weather-dependent yet? 🌧️",
+            "Local senior citizen center wants your location 📍"
+        ];
+        
+        let clickCount = 0;
+
+        function buttonClicked() {
+            clickCount++;
+            const btn = document.getElementById('kneeBtn');
+            
+            // Change text randomly
+            const randomPhrase = phrases[Math.floor(Math.random() * phrases.length)];
+            btn.innerHTML = randomPhrase;
+            
+            // Change button color to look chaotic
+            const randomColor = '#' + Math.floor(Math.random()*16777215).toString(16);
+            btn.style.backgroundColor = randomColor;
+
+            // Make the button run away on the 3rd click just to be annoying
+            if (clickCount >= 3) {
+                btn.style.position = 'absolute';
+                btn.style.left = Math.random() * 70 + 15 + '%';
+                btn.style.top = Math.random() * 70 + 15 + '%';
+            }
+        }
+    </script>
+</body>
+</html>
